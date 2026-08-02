@@ -1,0 +1,1409 @@
+pools:
+  default:
+    type: voted
+    enabled: true
+    dynamic: true
+    players: 1
+    cycle-time: -1
+    vote-options: 5
+    score:
+      persist: true
+      default: 0.35
+      decay: 0.01
+      rise: 0.0015
+      min-after-vote: 0.01
+      max-after-vote: 0.5
+      min-for-vote: 0.03
+      after-playing: bound(play_minutes - 30, 0, 60) * -0.01
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    modifier: |-
+      pow(score, 2) * bound(1 - (0.4 * same_gamemode), 0.4, 1) * bound(0.5 * (
+        tanh(
+          bound(-0.0025 * players + 0.4, 0.15, 0.6) *
+          (mapsize - bound(players * bound(1 - bound(play_minutes - 90, 0, 30) / 200, 0.85, 1) * 1.05, 0, 90))
+        ) -
+        tanh(
+          bound(-0.0025 * players + 0.4, 0.15, 0.6) *
+          (mapsize - bound(
+            0.005 * (players * bound(1 - bound(play_minutes - 90, 0, 30) / 200, 0.85, 1)) ^ 2 +
+            0.95 * (players * bound(1 - bound(play_minutes - 90, 0, 30) / 200, 0.85, 1)) +
+            5, 10, 150
+          ))
+        )
+      ), 0, 1)
+    maps:
+      bridge_5v5:
+        weight: 0.5
+        maps:
+          - Banished
+          - Chernot
+          - Coral
+          - Dead End
+          - Limitless
+          - Polders
+          - Research
+          - Vineyard
+          - Yonaguni
+      bridge:
+        weight: 0.5
+        maps:
+          - Avant Garde
+          - Cordillera
+          - Double Cross
+          - Double Take
+          - Mont Blanc
+          - Over Troubled Water
+          - Rockaway Bridge
+      bridge_swap:
+        - 'Bridge Swap: Double Take'
+        - Gulch
+        - Moss
+      item_sumo:
+        weight: 0.5
+        maps:
+          - Atomic
+          - Calima
+          - Psycho Sumo
+          - Weald
+      flag_assault_8v8:
+        weight: 0.5
+        maps:
+          - Royal Rumble II
+          - Kalahari Sanctuary
+      flag_football:
+        weight: 0.5
+        maps:
+          - Cathedral Football
+          - Cola
+          - Ice Rift
+          - Kraken
+          - Longhorn
+          - Superbowl Sunday
+      touchdown:
+        weight: 0.5
+        maps:
+          - Colorado Alpines
+          - Experiment 12
+          - 'Fireballs Bowl: Mini'
+          - Project Classbowl
+          - Shingeki no Brady
+          - The Overcast Bowl
+          - The Soup Bowl
+          - Tom Brady
+          - Trip to Cancun
+          - Tron Brady
+      normal:
+        - A Classy Night for a Fight
+        - Acear I
+        - Ad Astra
+        - Ad Infinitum
+        - Aequabilis
+        - Aerobellum
+        - Aether
+        - Agrostid
+        - Airship Battle
+        - Aleppo
+        - Allure
+        - Alpine Mining
+        - Amphitheater
+        - Ancient
+        - Annealing
+        - Annealing III
+        - Annealing IV
+        - Anvil
+        - Apocalypse CTW
+        - Apollo 23
+        - Appalachia
+        - Apostle
+        - Apple Smash
+        - Aquaduct CTW
+        - Arctic Ruins
+        - Armature
+        - Artholis
+        - Ascendance Payload_Race
+        - Assault
+        - Athirk
+        - Atromix
+        - Autumn Solstice
+        - Autunno
+        - Avalon Funland
+        - Badger Dream
+        - Badlands
+        - BalloonsDTM
+        - Bamboo Valley III
+        - Bamboo Valley V
+        - Banana Split
+        - Barnyard Abduction
+        - Barr DTC
+        - Barricade
+        - Battle Ecliptica II
+        - Battle Ecliptica III
+        - Battle for Amaterasu
+        - Battle of Krehm
+        - Battle of Tenjin II
+        - Battle of Tenjin III
+        - Battleship Halberd
+        - Beach Battles
+        - Beauty to Ashes
+        - 'Bed Rush: Drakkar'
+        - Beehive
+        - Belcrest
+        - Belvedere
+        - Bessemer's Process
+        - Biotech
+        - Black Gold
+        - Blitzkrieg CTF
+        - BlockBlock
+        - Blocks CTW
+        - Blocks DTC
+        - Blocks II
+        - 'Blocks: Destroy the Dynamite'
+        - Bloom
+        - Blossom CTW
+        - Boar Beach
+        - Bob-Omb Battlefield
+        - Boletum
+        - Boom
+        - Boulevard
+        - Brisked
+        - Brittlebush
+        - Burning Palace
+        - Byas
+        - Calico
+        - Cannonball Cove
+        - Canyon II
+        - Catre KotH
+        - Catscratch
+        - Cherno CTF
+        - Cherry City
+        - Chestnut
+        - Circus DTC
+        - Citadel
+        - City of Colors DTM
+        - Ciudad Costera
+        - ClayClay
+        - Cobalt Planet
+        - Coconut Mald
+        - Columbia CTW
+        - Comb Conquest
+        - Come Summertime
+        - Concourse
+        - Cool Steak
+        - Coral Reef
+        - Corrupted Paradise CTW
+        - cos(tnt)
+        - Courtyard Classic
+        - Crippled Divide
+        - Curly Pride
+        - Curly Wools IX
+        - Cursed Library
+        - Cytokinesis
+        - 'Dark Nebula: Snowball RAGE'
+        - DATAcenter
+        - Daydream Mini
+        - Dead Noon
+        - Dead Waters
+        - Deadly Gaze
+        - Deadwood
+        - Deciduous Nights
+        - Deepwind Jungle
+        - Deepwood
+        - Depths
+        - Desert Cataract
+        - Desert Eclipse
+        - Desert Sanctuary
+        - Desolate Gully CTW
+        - Diramu Valley DTM
+        - 'Directrix: TDM'
+        - Discipline
+        - Discount Fortress
+        - Discovery
+        - Disc Wars III
+        - Divided
+        - Don't Break My Heart
+        - Double Trouble
+        - Downforce
+        - Downforce II
+        - Downtown
+        - Dreamland
+        - Dromedary
+        - Dwyer Hill
+        - Dynamite
+        - Embargo
+        - Emerald Glades
+        - Emission
+        - Enchanted
+        - Entropy Reactor Mk. 1
+        - Epsilon
+        - Ether
+        - Exiled KotF
+        - Exit
+        - Exogrid
+        - Extraterrestrial
+        - Facility
+        - Factorio Mainbus
+        - Factory
+        - 'Fairy Tales 2: A Tale or Two'
+        - 'Fairy Tales: Metamorphose'
+        - Fall of Babylon
+        - Fallencrests
+        - 'FB: Courtyard Isles'
+        - 'FB: Data-Rush'
+        - Feel Good Inc.
+        - Fields of Glory
+        - Fier
+        - Firum CTW
+        - Ford
+        - Forge Ignea
+        - Fox Dream
+        - Fractal Descent
+        - Fracture DTM
+        - Frob
+        - Frog Pond
+        - Frost
+        - 'Frozen Market: One in the Quiver'
+        - Fungi Grove
+        - Geometric Domination
+        - Gethsemane
+        - Gloomwald
+        - Gobi
+        - Golden Drought
+        - Golden Drought IV
+        - Golden Drought VI
+        - Golden Fever
+        - Gongua CTW
+        - Grassy Mound CTF
+        - Greecia
+        - Green Gem CTW
+        - Gridlock 2
+        - Grub
+        - Harbor CTW
+        - Harvest
+        - Haunted Cruiser
+        - Haven Tide
+        - Hearts of Atlantis
+        - Hemlock
+        - Hemlock II
+        - Hillside Daydream
+        - Hobbit CTW
+        - Hobbit Hill
+        - Home by the Sea
+        - Hot Dam
+        - Hot Dam Mini
+        - Hotel Overcast
+        - Howdy Partner
+        - Hydrolock
+        - Icescar
+        - Incassum
+        - Industrial
+        - Ingwaz
+        - Inheritance
+        - Inkbloc Art Academy
+        - Insanihe
+        - Interitus
+        - Iris DTC
+        - Island Divide
+        - Istana CTW
+        - Iti Mo'ai
+        - Japan
+        - Java II
+        - Jungle Beat
+        - Jurassic
+        - Justice
+        - Kahoy
+        - Kanto
+        - Keipha CTW
+        - Kerskyn
+        - King Neptune
+        - King Ranch
+        - Kingdom
+        - Krager
+        - Kuusepuu
+        - Kyoto
+        - La Bataille de l'épée
+        - Lab'ex
+        - Lava Dew
+        - Level Up
+        - Levels
+        - Lilypad
+        - Limbo
+        - Limit
+        - Little Roses
+        - Long Distance
+        - Lost Gardens
+        - Lost Haven
+        - Lost World CTF
+        - Loyalty DTM
+        - Lupain
+        - Madness on Rails
+        - Mahatma
+        - Mame, I Shrunk the PvPers
+        - Maple Falls
+        - Maple Syrup
+        - Mars Odyssey
+        - Masarin II
+        - Mayan Apocalypse
+        - Mbanza
+        - Medieval Village
+        - Metro
+        - Metropolis
+        - Midnight Train
+        - Miner Sixty Niner
+        - Mistral Bay
+        - Mo'ai
+        - Mole Dream
+        - Molendinis
+        - Monkey Mania
+        - Monument Valley
+        - Moonlight Summit
+        - Mush
+        - Mushdoom
+        - Mushroom Gorge
+        - Mushroom Kingdoms
+        - Mystic Point
+        - Mythical Marsh
+        - Natsukashii
+        - Nether War CTW
+        - NextRace DTM
+        - Nightsail
+        - Nirow
+        - No Man's Land
+        - Noble's District
+        - North Winds
+        - Notre-Daaaaam of Paris
+        - Nutrient
+        - Oceano CTW
+        - Odin
+        - Onier
+        - Operation Overlord
+        - Osoi
+        - Oumuamua
+        - Ouroboros
+        - 'Outback: Outback Edition'
+        - OutCast
+        - OutCast 2
+        - Outlyne
+        - Paddo's
+        - Paint the Streets
+        - Pandemonium
+        - Parabola
+        - Parallel Plays
+        - Peloponnesia
+        - Philosopher's Stone
+        - Pigland
+        - Pineium CTW
+        - Pineium DTM
+        - Pirates I
+        - PixelMix
+        - Placid Spring
+        - Polynesia
+        - 'Pompeii 5x5: One in the Quiver'
+        - Pond
+        - Possession Game
+        - Prisma CTW
+        - Promenade
+        - Puddin' Pops
+        - Puyt
+        - Quadrival
+        - Quadrosphere Rage
+        - Querelous
+        - Race for Victory 4
+        - Raceway
+        - Rafiki
+        - Raid FFA
+        - Rangi-nui
+        - Rat Revolution
+        - Rattlesnake
+        - Reindeer Trails
+        - Renegade
+        - Retaliation 2
+        - Rice
+        - Rind Rushers II
+        - Ringpull
+        - Riverside
+        - Roar
+        - Rocky Top
+        - Röntgen
+        - Rotten
+        - Royal
+        - Royal Ascend
+        - Royal Garden DTC
+        - Roziterman
+        - Ruby Planet
+        - Ruediger's Bonsai Garden
+        - Ruffland
+        - Sakura Garden
+        - Santorini
+        - Sarc
+        - Sawgrass 17
+        - Scorched Grove
+        - Seaside Plaza
+        - Segment
+        - Sharks Killed
+        - Sheep CTW
+        - Shifty Sands
+        - Shinobi
+        - Siloë
+        - Simplicity CTW
+        - Sinuous
+        - Sky Shot
+        - Skycastle Islands
+        - Smashcap
+        - Smoke KotH
+        - Snowdrift Pass
+        - Soviet Mills
+        - Space Corp
+        - Spaceship Battles
+        - Standstill
+        - State of Decay II
+        - Station X
+        - Steam Siege
+        - Streamline II
+        - Sunbliss
+        - Sunburn
+        - Super Bed World
+        - SuperCUBE
+        - Swamped
+        - Sweetopia
+        - Tahiti
+        - Tangier
+        - Tanker TNT
+        - Tebulas
+        - Temple
+        - Temple Valley
+        - Teokalli
+        - Tetrad
+        - The 4th Law
+        - The Archives
+        - The Big Dig
+        - The Endless Blue
+        - The High Road
+        - The King's Lava Lair
+        - The Last Sunset
+        - The Nile
+        - The Waiting Room
+        - Thistle Terrace
+        - Thornwood
+        - Thunder
+        - Thunderbolt
+        - Thunderrush
+        - Timbered
+        - Tohjo Falls
+        - Tohjo Falls II
+        - Torn Canyon
+        - Total Beesness
+        - Total War II
+        - Totem
+        - 'ToW: Mush More'
+        - Townside
+        - Trail Mix
+        - Tranquility
+        - Treflip
+        - Trial Chambers
+        - Tulip Mania II
+        - Tulog
+        - Tumbleweed
+        - Turf Wars
+        - Tuscany Hills
+        - Tusho CTW
+        - Twilight Citadel
+        - Twilight Tuckaway
+        - Twisted
+        - Two Tier
+        - UBoat König
+        - Ubos CTF
+        - Ulcinj
+        - Un Pulpito Panoramico
+        - Vegas
+        - Veld
+        - Venice TDM
+        - Vertex
+        - Vesuvius
+        - Villa I
+        - Villa II
+        - Voodoo
+        - Wallop 9000
+        - Warlock
+        - Warzone
+        - Waterwood
+        - We Sell Mushrooms CTF
+        - Wholething
+        - Wild Isle
+        - Wildwood Crevice
+        - Winsray Fields
+        - Winter Solstice
+        - Winterbane
+        - Wit's End
+        - Witch's Potions
+        - Woodwork Harbor
+        - Woolirium
+        - Wooly Woods
+        - Wrath Altar
+        - Wrath of Cthulhu
+        - Xi
+        - Xi II
+        - Ximorta
+        - Xion
+        - Xunkohtli
+        - Yangshuo
+        - Yermo
+        - Zipline III
+        - Zoo
+  avicus:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Bleened Rings
+      - Embers 1
+      - Embers 2
+      - Eternal Virus
+      - Formorgar 1
+      - Fossil Canyon
+      - Frostbite
+      - Gladiator
+      - Halcyon
+      - Justice 1
+      - Justice 2
+      - Mystic Desert
+      - Palm Rust
+      - Proelium DTM
+      - Rendezvous Redux
+      - Senex 1
+      - Senex 2
+      - Snowy Crusade
+      - Ternio
+      - Yellowstone
+  tspvp:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Breath
+      - Colors II
+      - Omega CTW
+      - Omega DTC
+      - The Lost Arcade
+      - The Lost Light in the Darkness
+      - The Lost Ring
+      - Watercolors
+  fun:
+    type: voted
+    cycle-time: -1
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - 101 Rooms TDM
+      - AstroGEN
+      - Ballot Box
+      - Banana Split
+      - Barf Box
+      - Beach Battles
+      - BlitzMiners
+      - 'Blocks: Destroy the Dynamite'
+      - Bomber Guys
+      - BoomBox
+      - CannonCube
+      - Cannon Duel
+      - CannonQuad
+      - DATAbasin
+      - Directrix
+      - DK Crossovers DTE
+      - Ender Blast
+      - Fairy Tales
+      - Fortress Battles
+      - Hide n' Seek
+      - Ieats Hall
+      - King Ranch
+      - Ladderp II
+      - Medieval Warfare DTE
+      - Mega Cacti Terror
+      - Mini Drought
+      - Paint Can't Wait
+      - 'Race: Circuit'
+      - 'Race: Drought'
+      - 'Race: Ender'
+      - 'Race: Pebble Creek'
+      - Rage Quit
+      - Rage Quit TDM
+      - Rallypoint Delta
+      - Sand Wars DTE
+      - Sand Wars InvisiPEARLBow Rage KOTH Grenades Extreme
+      - Shave
+      - Shave Vice
+      - Sky Traffic
+      - Spaceship Battles
+      - Spooktober
+      - Stairs to Nowhere
+      - Stop the Boats
+      - The Dropper
+      - 'The Dropper: Community Edition'
+      - The High Seas
+      - Water Drop Extreme
+      - 'Water Drop: Sunrise Over Paradise'
+      - 'Zipline: Moar Gunz Edition'
+  sns:
+    type: voted
+    cycle-time: -1
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - A Journey Through History
+      - Arid Crossroads
+      - Arriva
+      - Atlantis
+      - Bill's Town Blitz
+      - 'BipBetaMC: TDM'
+      - Bliss
+      - Charge
+      - Crossfire
+      - Dead Heat
+      - Dry Wound
+      - Fallen Courtyard
+      - Foxtrot
+      - Gooseberry
+      - Hide n' Seek
+      - 'Hide n'' Seek: Community'
+      - Humble Jungle
+      - Into the Jungle
+      - Juggernaut's Hall
+      - 'King''s Conquest: Proelium'
+      - 'King''s Conquest: Rage Quit'
+      - Mega Cacti Terror
+      - Oculo
+      - Ping Bomb II
+      - Pixel Run
+      - Plus Side
+      - Puddin' Pops
+      - Rage Maze
+      - Red Agony
+      - Rooted Frontier
+      - Salvo
+      - Sandstone Temples
+      - Skyfall
+      - Sugar Cane Valley
+      - Swarthmoor
+      - Sweet Tooth
+      - Sylvan
+      - 'Team Parkour: Ice'
+      - 'Team Parkour: Jungle'
+      - The 6th Law
+      - The Hopper
+      - TNT Spleef
+      - 'War Wars: Classic'
+      - 'War Wars: 2Tall4Me'
+      - 'War Wars: Sand Wars 2'
+      - 'War Wars: Spongecake'
+      - Water Drop Extreme
+      - 'Water Drop: II'
+      - 'Water Drop: Limbo II'
+      - 'Water Drop: Original'
+      - Wool Story Bro
+      - Zen
+  funky-friday:
+    type: voted
+    cycle-time: -1
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - 100 Rooms
+      - '101 Rooms: Lifesteal'
+      - 2D
+      - A Journey Through History
+      - 'Adabat: Jungle Joyride'
+      - AMONG US
+      - Arid Crossroads
+      - Arriva
+      - Balls of Steel
+      - Barf Box
+      - Bayview
+      - Bed Rush
+      - 'Bed Wars: Luxor'
+      - 'Bed Wars: Thunderbird'
+      - Bikini Bottom Runner
+      - Biomes
+      - Blast Mining
+      - 'Bliss: Rage'
+      - 'BlockGlitch 2: Electric Boogaloo'
+      - Bouncy Stadium
+      - 'Bow Spleef: Shogun'
+      - Cacti Panic
+      - Cacti the Monument
+      - Cacti the RAGE
+      - Cacti the Wool
+      - Cannon Duel
+      - Ch8rge
+      - Charge (2023 Reboot)
+      - Charge 2.0
+      - 'Charge 6: This Time It''s in Space'
+      - Charge
+      - Connect 4
+      - 'Conquest: Hide from the Refs'
+      - Cozy Cove
+      - Day at the Alley
+      - Dead Heat
+      - 'Deathrun: Aperture'
+      - Do Not Press The Button For Two Minutes
+      - Dodge Ball
+      - Dodge Ball Stadium
+      - Down Side Up
+      - Dynamight Versus
+      - Eldritch Trials
+      - Fall Guys
+      - Firing Squad
+      - Find the Button!
+      - Flappy Bird
+      - 'Freeze Tag: Icebliss'
+      - Frostbite
+      - Ghost Spleef
+      - Gladiator
+      - 'Glass Bridge: Slap Edition'
+      - 'GS: Beholder'
+      - 'GS: Last Frontier FFA'
+      - 'GS: Splinter'
+      - Hide n' Seek
+      - 'Hide n'' Seek: Community'
+      - Humble Jungle
+      - 'Infection: Amusement Park'
+      - 'Infection: Boulevard'
+      - 'Infection: Cityscape'
+      - 'Infection: Kraken'
+      - 'Infection: Riot in Prison'
+      - 'Infection: Skull Island'
+      - 'Infection: Store'
+      - Into the Jungle
+      - Intruders
+      - Juggernaut's Hall
+      - 'Juggernaut''s Hall: Sacrifice'
+      - Killavator
+      - 'King''s Conquest: Incendiary'
+      - 'King''s Conquest: Porky Plains'
+      - 'King''s Conquest: Rage Quit'
+      - 'King''s Conquest: Rallypoint Beta'
+      - Knockout Stadium
+      - Knockout Stick Fight
+      - Ladderp II
+      - Last Team Standing
+      - 'Long Shot: Payload'
+      - 'MB: Catnap'
+      - 'MB: Durrr Burger'
+      - 'MB: TOM BRADY'
+      - 'MB: Wootonia'
+      - Mega Cacti Terror Teams
+      - Mega Cacti Terror
+      - 'MobArena: Silent City'
+      - Mont Blanc Grand Prix
+      - No Return
+      - Nostalgia
+      - Oculo
+      - Paint Can't Wait
+      - Paint Can't Wait 2
+      - Penguin Pursuit
+      - Perfect Match
+      - Pillars
+      - Ping Bomb II
+      - Pixel Run
+      - 'Player Blender: Lifesteal'
+      - Plus Side
+      - 'Procedural: Cliff Maze'
+      - 'Procedural: Shroom Towers'
+      - Prototype
+      - Puddin' Pops
+      - pvpland
+      - Quidditch
+      - 'Race: Circuit'
+      - 'Race: Drought'
+      - 'Race: Ender'
+      - 'Race: Moo Moo Meadows'
+      - 'Race: Pebble Creek'
+      - 'Raid FFA: Guns'
+      - Red Agony
+      - Red Rover
+      - Road to the Moon
+      - 'Rush Wars Tournament 2: Attack of the Defenders'
+      - Salvo But it's a Castle and There's 2x Monuments
+      - Salvo
+      - Skill Issue
+      - Sky Push Royale
+      - Skyfall
+      - Stop the Boats
+      - 'Stop the Boats: United Kingdom Edition'
+      - Sugar Cane Valley
+      - Swarthmoor
+      - Tangled
+      - Tavern
+      - Teamwork
+      - The Dropper
+      - 'The Dropper: Community Edition'
+      - The Fenland - EPIC STYLE
+      - The Grand Dueling Tournament II
+      - The Grand Spleefing Tournament II
+      - The High Seas
+      - Tic Tac K.O.
+      - TNT Rain
+      - TNT Spleef
+      - 'TNT Tag: Block Fortress'
+      - 'TNT Tag: Monkey Mayhem'
+      - 'TNT Tag: Zoo'
+      - 'Tug of War: Block Swap'
+      - 'Tug of War: Bridge GONE'
+      - Turf Warz
+      - 'War Wars: Classic'
+      - 'War Wars: False Alarm'
+      - 'War Wars: Sand Wars 2'
+      - 'War Wars: Slippery Slope'
+      - 'War Wars: The Wall Pt 2'
+      - 'War Wars: Torment'
+      - Watch Your Head
+      - 'Water Drop: Directrix'
+      - 'Water Drop: Ender Blast'
+      - 'Water Drop: Limbo II'
+      - 'Water Drop: Long Shot'
+      - 'Water Drop: Sunrise Over Paradise'
+      - Water Drop Extreme
+      - Whirlpool
+      - Wool Story Bro
+  tnt-tuesday:
+    type: voted
+    cycle-time: -1
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Aerobellum
+      - Airclay Battle
+      - Airship Aces
+      - Airship Battle
+      - Apollo 23
+      - Astro
+      - Autumn Solstice
+      - Ballot Box
+      - Battleship Halberd
+      - Blast Mining
+      - Blocks DTC TNT
+      - 'Blocks: Destroy the Dynamite'
+      - BoomBox
+      - 'BoomBox: 2 Monuments'
+      - Breath
+      - Cannonball Cove
+      - CannonCube
+      - Cannon Duel
+      - cos(tnt)
+      - Dangerous Cargo
+      - DATAbase
+      - DATAbasin
+      - DATAcenter
+      - DATAstation
+      - DK Crossovers DTE
+      - Don't Explode My Heart
+      - Donut Wars
+      - Double Trouble
+      - Ender Blast
+      - Fort Wars
+      - Fortress Battles
+      - Fox Strife
+      - Fractal Descent
+      - 'Fractal Descent: Classic'
+      - Hyperspace
+      - Incassum
+      - Interitus
+      - Iris DTC
+      - Kï
+      - Lunar Crescent
+      - Mars Odyssey
+      - 'Medieval Warfare: DTE'
+      - Monolith
+      - Mushdoom
+      - Osoi
+      - Project Chromozome
+      - Relic
+      - Retaliation
+      - Retaliation 2
+      - Retro Encabulator
+      - Rock the Casbah
+      - Runes of Ruin
+      - Salvo
+      - Salvo But it's a Castle and There's 2x Monuments
+      - Shroom Trip
+      - Sky Traffic
+      - Sky Traffic 1.5
+      - Sky Traffic 2
+      - Spaceclay Battles
+      - Spaceship Battles
+      - Stone Fields
+      - The High Seas
+      - The Killing Floor
+      - The Lost Arcade
+      - The Waiting Room
+      - Total War
+      - Totally War II
+      - Wallop 9000
+      - Wallop Series X
+      - Zombie Defense
+  warwars:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - 'War Wars: 2Tall4Me'
+      - 'War Wars: Baby''s First Build'
+      - 'War Wars: Classic'
+      - 'War Wars: False Alarm'
+      - 'War Wars: Ice to Meet You'
+      - 'War Wars: Ironforge'
+      - 'War Wars: Minimalist'
+      - 'War Wars: Null and Void'
+      - 'War Wars: Peaceful Meadows'
+      - 'War Wars: Portals'
+      - 'War Wars: Prime Time'
+      - 'War Wars: Sand Wars 2'
+      - 'War Wars: Slippery Slope'
+      - 'War Wars: Spongecake'
+      - 'War Wars: Sticky Situation'
+      - 'War Wars: The Wall Pt 2'
+      - 'War Wars: Torment'
+      - 'War Wars: Tree Hugger'
+      - 'War Wars: Wait what?'
+      - 'War Wars: ɹɐʍɹɐʍ'
+  nostalgia:
+    type: ordered
+    enabled: true
+    dynamic: false
+    players: 1
+    maps:
+      - Harb
+      - Urban Jungle
+      - Fortress Battles
+      - Race for Victory
+      - A Watery Grave
+      - Medieval Warfare
+      - Cake Wars
+      - Sand Wars
+      - Tree of Life
+      - Sky Traffic
+      - Spaceship Battles
+      - Airship Battle
+      - Avalanche
+      - Shroom Trip
+      - Fort Wars
+  classic:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    modifier: |-
+      pow(
+        score *
+        bound(1 - (0.2 * same_gamemode), 0.2, 1) *
+        bound(0.5 * (
+          tanh(bound(-0.0025 * players + 0.5, 0.2, 1) * (mapsize - bound(players * 1.05, 0, 90))) -
+          tanh(bound(-0.0025 * players + 0.5, 0.2, 1) * (mapsize - bound(0.005 * players ^ 2 + 0.95 * players + 5, 10, 150)))
+        ), 0, 1)
+      , 2)
+    maps:
+      - A New Day
+      - A Watery Grave
+      - 'Aerobellum: Classic'
+      - Airship Battle
+      - Anathema
+      - Antiquis
+      - Argon
+      - Astro
+      - Atromix
+      - Avalanche
+      - Avalon Funland
+      - Babylon
+      - Balloon Archipelago
+      - BalloonsDTM
+      - Bamboo Valley
+      - Banana Split
+      - Battle Ecliptica III
+      - Battle for Amaterasu
+      - Battle of Krehm
+      - Battle of Lyndanisse
+      - Battle of Tenjin
+      - Battle of Tenjin II
+      - Battle of Tenjin III
+      - Bessemer's Process
+      - BlockBlock
+      - Blocks CTW
+      - Blocks DTC
+      - Blocks II
+      - 'Blocks: Destroy the Dynamite'
+      - Boom
+      - 'BoomBox: Classic'
+      - Bridge Over Troubled Water
+      - Broken Unity
+      - Cake Day
+      - Cake Wars
+      - Cargo
+      - Cat's Cradle
+      - Circus CTW
+      - Circus DTC
+      - Cloud Nine
+      - 'Coastline: Classic'
+      - Corrupted Kingdoms
+      - Crater of Secrets
+      - D-Day
+      - DATABasin
+      - DATACenter
+      - Deepwind Jungle
+      - Desert Cataract
+      - Diablo
+      - Discipline
+      - Dust
+      - Dwyer Hill
+      - Dynamo
+      - Empire
+      - Ender Blast
+      - Equinox
+      - Facility
+      - 'Fairy Tales 2: A Tale or Two'
+      - 'Fairy Tales: Metamorphose'
+      - Fallencrests
+      - Fort Wars
+      - Fortress Battles
+      - Fourchette
+      - Fox Strife
+      - Fractal Descent Classic
+      - 'From the Archives: Royal Garden CTW'
+      - Full Salvo
+      - Glacial Impact
+      - Glacial Impact 2
+      - Golden Drought
+      - Golden Drought II
+      - Golden Drought III
+      - Golden Drought IV
+      - Green Hill Zone
+      - Hadron
+      - Harb
+      - Hot Dam
+      - Hot Dam Mini
+      - Hydrolock
+      - Hydrolock II
+      - Infernal Shadow
+      - Inheritance
+      - Interitus
+      - Ion
+      - Iris DTC
+      - Irongate Harbor
+      - Jungle Beat
+      - Kytriak
+      - Levels
+      - Limbo II
+      - Lunar Coliseum
+      - Mayan Apocalypse
+      - Medieval Warfare
+      - Midnight Train
+      - Modern Cityscape
+      - Molendinis
+      - Monument Valley
+      - Moonlight Summit
+      - Mushroom Gorge
+      - Mutiny
+      - Mystic Point
+      - Nightsail
+      - Nivalis
+      - Northlands
+      - Nuclear Winter
+      - Ouroboros
+      - Outback
+      - Ozone
+      - Persisto
+      - PixelMix
+      - Placid Spring
+      - Race for Victory
+      - Race for Victory 2
+      - Race for Victory 3
+      - Retaliation
+      - Retaliation 2
+      - Rift
+      - Ring Race
+      - Runes of Ruin
+      - Sand Wars
+      - Scrap Mettle
+      - Shroom Trip
+      - Sky Traffic
+      - Sky Traffic 2
+      - Smog
+      - Snowy Wars
+      - SolitudeMC
+      - Soviet Mills
+      - Spaceship Battles
+      - Spaceship Battles II
+      - Storm
+      - Streamline
+      - 'Sunrise Over Paradise: Classic'
+      - SuperPRISM
+      - Swamped
+      - Tanker TNT
+      - Tebulas
+      - Temple Run
+      - Temple Valley
+      - Tenebrous
+      - The 4th Law
+      - The 8th Law
+      - The 9th Law
+      - 'The Arena: Classic'
+      - The Fenland
+      - 'The Hill: Classic'
+      - The Nile
+      - Total War
+      - Totally War II
+      - Tree of Life
+      - Trench Warfare
+      - Trench Warfare 2
+      - Turf Wars
+      - Twisted
+      - Two Tier
+      - Urban Jungle
+      - Valley of the Dead
+      - Venice TDM
+      - Viridun
+      - Warlock
+      - Welcome to Wool Square
+      - Wildwood Crevice
+      - Wit's End
+      - Woodwork Harbor
+      - Woolirium
+      - Wooly Woods
+      - Zoo
+  rage:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - 100 Rooms
+      - 101 Rooms
+      - Arid Crossroads
+      - Arx Rage
+      - Atlantis
+      - Aureola Rage
+      - Basilicas of Space
+      - BipBetaMC
+      - 'Bliss: Rage'
+      - Blossom
+      - Bouncy Stadium
+      - BVC
+      - Charge
+      - Chinatown
+      - 'Christmas Eve: Rage'
+      - Colors II
+      - Cubed
+      - Dead Town
+      - Deschutes
+      - Drandion
+      - Dry Wound
+      - Earthborn
+      - Fallen Courtyard
+      - Fallen Empire
+      - Foxtrot
+      - Frost Bound Rage
+      - Gone Camping
+      - Gooseberry
+      - Gravestone
+      - Grimsnes
+      - Hand of God
+      - Hanging Garden
+      - Ieats Hall
+      - Immortal
+      - Infinite
+      - Into the Jungle
+      - 'Java: Rage'
+      - Lush
+      - Magnolia Creek
+      - Milky Way
+      - Mushrooms of Oblivion
+      - Netherrage
+      - Network
+      - New Way
+      - Oculo
+      - Overgrown Rage
+      - Palude
+      - Permeac
+      - Plus Side
+      - Pride
+      - Proelium
+      - Pyradic
+      - Quavilla
+      - 'Radiant Castles: Rage'
+      - Rage Maze
+      - Rage Quit
+      - Rig
+      - Rubik's Rage
+      - Sandstone Temples
+      - Sand Wall
+      - Secluded Oasis
+      - Secluded Palace
+      - Secluded Wharf
+      - Sentio
+      - Snowfall
+      - Snow Globe
+      - Spooktober
+      - Stairs to Nowhere
+      - Swarthmoor
+      - Sweet Tooth
+      - Sylvan
+      - The 6th Law
+      - The Dome
+      - The End
+      - Together
+      - Trinity
+      - Vinebay
+      - Wintry Way
+      - Wonderland
+      - Yukon
+      - Zen
+  gs:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Amazon
+      - Classic Flame
+      - Eldritch
+      - Frozen Palace
+      - 'GS: Beholder'
+      - 'GS: Chandelier'
+      - 'GS: Earthborn'
+      - 'GS: Last Frontier FFA'
+      - 'GS: Splinter'
+      - Grassy Knoll
+      - Life-O-Rama
+      - Nostalgia
+      - Prototype
+      - Pseudo
+      - Pseudo II
+      - Quartz Mine
+      - Royal Garden
+      - Tangled
+      - Vengeance
+      - Whirlpool
+  micro-battles:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Cozy Cove
+      - 'MB: 2014 Lobby'
+      - 'MB: 44 Rooms'
+      - 'MB: Airship Battles'
+      - 'MB: Anarchy'
+      - 'MB: Avalon Funland'
+      - 'MB: Battle of Tenjin'
+      - 'MB: BlockBlock'
+      - 'MB: Boombox'
+      - 'MB: Catnap'
+      - 'MB: DATAcenter'
+      - 'MB: Desert Sanctuary'
+      - 'MB: Double Take'
+      - 'MB: Durrr Burger'
+      - 'MB: Dynamo'
+      - 'MB: Fairy Tales'
+      - 'MB: Fenland'
+      - 'MB: Fortress Battles'
+      - 'MB: Fractal Descent'
+      - 'MB: Golden Drought'
+      - 'MB: Hot Dam'
+      - 'MB: Limbo'
+      - 'MB: Luxor'
+      - 'MB: MB^4'
+      - 'MB: Miku and Friends'
+      - 'MB: Penicillin'
+      - 'MB: Race for Victory 2'
+      - 'MB: Race for Victory 4'
+      - 'MB: Race for Victory 4: Redux'
+      - 'MB: Rallypoint Gamma'
+      - 'MB: Renaissance'
+      - 'MB: Roulette'
+      - 'MB: Sandstone Temples'
+      - 'MB: Snowy Wars'
+      - 'MB: Spaceship Battles'
+      - 'MB: Sunrise'
+      - 'MB: Tebulas'
+      - 'MB: TOM BRADY'
+      - 'MB: UBoat'
+      - 'MB: Vesuvius'
+      - 'MB: Viridun'
+      - 'MB: Warlock'
+      - 'MB: Wit''s End'
+      - 'MB: Wootonia'
+      - 'MB: Xoi''s Pinkity Drinkity Maid Cafe'
+      - 'MB: Xyth'
+      - Winter Wars
+  touchdown:
+    type: voted
+    enabled: true
+    dynamic: false
+    players: 1
+    cooldown:
+      min-length: 45
+      minutes-per-day: 15
+    maps:
+      - Blue Lock
+      - Chess Cathedral
+      - Colorado Alpines
+      - Experiment 12
+      - Fireballs Bowl
+      - 'Fireballs Bowl: Mini'
+      - Friday Night Lights
+      - Keeper
+      - Moon Brady
+      - Pigskin Punchout
+      - Possession Game
+      - Project Classbowl
+      - Prospect Park
+      - Shingeki no Brady
+      - Steppe Bowl
+      - 'TE Brady: MVP Edition'
+      - The Overcast Bowl
+      - The Souper Bowl
+      - The Void Bowl
+      - Tom Brady
+      - 'Tom Brady: MVP Edition'
+      - Trip to Cancun
+      - Tron Brady

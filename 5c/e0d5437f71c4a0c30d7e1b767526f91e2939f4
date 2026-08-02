@@ -1,0 +1,26 @@
+processor/tsconfig.json
+  h_a954843f2693a3 1-9
+processor/package.json
+  h_a954843f2693a3 1-15
+processor/pnpm-lock.yaml
+  h_a954843f2693a3 1-54
+processor/.gitignore
+  h_a954843f2693a3 1-2
+.github/workflows/split.yml
+  h_a954843f2693a3 1-49
+processor/split.mts
+  h_a954843f2693a3 1-53
+map-pools.yml
+  h_a954843f2693a3 9-48,778,808,828,888,951,1119,1199,1226,1251,1437,1528,1558,1615,1639
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "5ce0d5437f71c4a0c30d7e1b767526f91e2939f4",
+  "prompts": {},
+  "humans": {
+    "h_a954843f2693a3": {
+      "author": "TTtie <me@tttie.cz>"
+    }
+  }
+}

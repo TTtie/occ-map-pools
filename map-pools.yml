@@ -6,6 +6,46 @@ pools:
     players: 1
     cycle-time: -1
 
+    groups: &common [default, modern]
+    overrides:
+      modern:
+        maps:
+          - "Allure"
+          - "Beyond"
+          # - "Bingo: 5 in line" Testing Phase | June 2026
+          - "Breezebille"
+          - "Chaos Theory"
+          # - "Cirrus Park"
+          - "Dizzy"
+          - "Erratic"
+          # - "FB: Data-Rush Deluxe"
+          - "FB: Blue Snooze"
+          - "FB: Explorers"
+          - "Fun House"
+          - "Ghast Jockey"
+          - "Graveyard Shift"
+          - "Iguazú"
+          - "Le Sur-Mesure"
+          - "MB: Wootonia Deluxe"
+          - "MMB: Anthill"
+          - "Militia"
+          - "Order"
+          - "Polynesia: Trident RAGE"
+          - "Pool Day"
+          - "Potrzebie"
+          - "Random Items"
+          - "Ruinic Altar"
+          - "St. Marc"
+          # - "Survive or Die: Oracle" Testing Phase | June 2026
+          - "Tartarus"
+          # - "The Grand Dueling Tournament III"
+          - "Thistle"
+          - "Thistle: Mini"
+          - "Trial Chambers: Crossbow Blast"
+          - "Tug of War: Intense Tugging"
+          - "Whac-A-Mole"
+          # - "Xolotl"
+
     # Voted pool only: num of maps to show each vote
     vote-options: 5
     # Voted pool only: modify how score behaves
@@ -735,6 +775,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Bleened Rings"
       - "Embers 1"
@@ -764,6 +805,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Breath"
       - "Colors II"
@@ -783,6 +825,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - 101 Rooms TDM
       - AstroGEN
@@ -842,6 +885,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - A Journey Through History
       - Arid Crossroads
@@ -904,6 +948,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "100 Rooms"
       - "101 Rooms: Lifesteal"
@@ -1071,6 +1116,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Aerobellum"
       - "Airclay Battle"
@@ -1150,6 +1196,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "War Wars: 2Tall4Me"
       - "War Wars: Baby's First Build"
@@ -1176,6 +1223,7 @@ pools:
     enabled: true
     dynamic: false
     players: 1
+    groups: *common
     maps:
       - Harb
       - Urban Jungle
@@ -1200,6 +1248,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     modifier: >-
       pow(
         score *
@@ -1385,6 +1434,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "100 Rooms"
       - "101 Rooms"
@@ -1475,6 +1525,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Amazon"
       - "Classic Flame"
@@ -1504,6 +1555,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Cozy Cove"
       - "MB: 2014 Lobby"
@@ -1552,50 +1604,6 @@ pools:
       - "MB: Xoi's Pinkity Drinkity Maid Cafe"
       - "MB: Xyth"
       - "Winter Wars"
-  modern:
-    type: voted
-    enabled: true
-    dynamic: false
-    players: 1
-    cooldown:
-       min-length: 45
-       minutes-per-day: 15
-    maps:
-      - "Allure"
-      - "Beyond"
-      # - "Bingo: 5 in line" Testing Phase | June 2026
-      - "Breezebille"
-      - "Chaos Theory"
-      # - "Cirrus Park"
-      - "Dizzy"
-      - "Erratic"
-      # - "FB: Data-Rush Deluxe"
-      - "FB: Blue Snooze"
-      - "FB: Explorers"
-      - "Fun House"
-      - "Ghast Jockey"
-      - "Graveyard Shift"
-      - "Iguazú"
-      - "Le Sur-Mesure"
-      - "MB: Wootonia Deluxe"
-      - "MMB: Anthill"
-      - "Militia"
-      - "Order"
-      - "Polynesia: Trident RAGE"
-      - "Pool Day"
-      - "Potrzebie"
-      - "Random Items"
-      - "Ruinic Altar"
-      - "St. Marc"
-      # - "Survive or Die: Oracle" Testing Phase | June 2026
-      - "Tartarus"
-      # - "The Grand Dueling Tournament III"
-      - "Thistle"
-      - "Thistle: Mini"
-      - "Trial Chambers: Crossbow Blast"
-      - "Tug of War: Intense Tugging"
-      - "Whac-A-Mole"
-      # - "Xolotl"
   touchdown:
     type: voted
     enabled: true
@@ -1604,6 +1612,7 @@ pools:
     cooldown:
        min-length: 45
        minutes-per-day: 15
+    groups: *common
     maps:
       - "Blue Lock"
       - "Chess Cathedral"

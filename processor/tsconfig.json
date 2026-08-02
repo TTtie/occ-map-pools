@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "types": ["node"],
+        "module": "nodenext",
+        "target": "ESNext",
+        "moduleResolution": "nodenext",
+        "lib": ["ESNext"],
+    }
+}

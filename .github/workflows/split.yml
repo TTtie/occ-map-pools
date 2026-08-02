@@ -1,0 +1,48 @@
+name: Split map pools into separate files for deployment
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: map-pools.yml
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          path: map-pools
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: lts/*
+      - name: Set up pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          package_json_file: map-pools/processor/package.json
+      - name: Set up Git and target worktree
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          cd map-pools
+          if ! git ls-remote --exit-code --heads origin deploy >/dev/null 2>&1; then
+            git worktree add --orphan -b deploy ../map-pools-deploy
+          else
+            git worktree add ../map-pools-deploy deploy
+          fi
+          cd ..
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --dir map-pools/processor
+      - name: Run split script
+        run: node ./map-pools/processor/split.mts
+      - name: Commit and push changes
+        run: |
+          cd map-pools-deploy
+          ls -lah
+          git add .
+          git commit -m "Update map pools for commit $GITHUB_SHA" --allow-empty # no changes? well... unfortunate
+          git push origin deploy --force
